@@ -1,0 +1,13 @@
+
+pushd build
+cmake ..
+make
+
+if [ -z "$1" ]
+  then
+    echo "Please enter a word"
+  else
+    ./patterns $1
+fi
+
+popd
