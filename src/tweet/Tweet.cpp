@@ -84,5 +84,5 @@ strvec Tweet::get_user_mentions() {
  * Override to string method
  */
 std::ostream& operator<<(std::ostream &strm, const Tweet &t) {
-  return strm << t.user << ": " << t.text;
+  return strm << "User: " << t.user << "\n" << "Text: " << t.text << "\n";
 }
