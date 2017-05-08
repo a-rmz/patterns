@@ -39,7 +39,7 @@ tw_arr Dataset::load(std::string path) {
  * Print the tweet set
  */
 void Dataset::print_tweets() {
-  for (Tweet::Tweet* t : this->tweets) {
+  for (Tweet* t : this->tweets) {
     std::cout << *t << std::endl;
   }
 }
