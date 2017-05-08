@@ -1,6 +1,5 @@
 
 #include <iostream>
-#include <set>
 #include "Dataset.h"
 #include "../json/utils.hpp"
 
@@ -45,11 +44,9 @@ void Dataset::print_tweets() {
   }
 }
 
-void Dataset::find_pattern(std::string regex) {
+std::set<Tweet*> Dataset::find_pattern(std::string regex) {
   this->set_regex(regex);
   std::set<Tweet*> found;
-
-  std::cout << "Searching for the pattern { " << regex << " }…" << std::endl;
   
   for (Tweet* tweet : this->tweets) {
 
@@ -66,8 +63,5 @@ void Dataset::find_pattern(std::string regex) {
     }
   }
   
-  std::cout << "I found " << found.size() << " matches:\n";
-  for(Tweet* t : found) {
-    std::cout << *t << std::endl;
-  }
+  return found;
 }
