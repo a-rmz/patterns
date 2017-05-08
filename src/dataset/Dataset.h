@@ -2,6 +2,7 @@
 #ifndef DATASET_H
 #define DATASET_H
 
+#include <set>
 #include <string>
 #include <vector>
 #include "../tweet/Tweet.h"
@@ -17,7 +18,7 @@ class Dataset {
     void print_tweets();
     void set_regex(std::string regex);
     void find_word(std::string word);
-    void find_pattern(std::string regex);
+    std::set<Tweet*> find_pattern(std::string regex);
 
   private:
     std::string path;

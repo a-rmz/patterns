@@ -1,6 +1,8 @@
 
 #include "regex.h"
 
+#include <locale>
+
 /**
   * Constructor
   */
@@ -8,11 +10,34 @@ Regex::Regex(std::string raw) {
   this->set_raw(raw);
 };
 
+void Regex::format(std::string& raw) {
+
+  raw = "(" + raw + ")";
+  if(raw[0] != '(') {
+    raw = "(" + raw;
+  }
+  int l = raw.length();
+  if(raw[l-1] != ')') {
+    raw = raw + ")";
+    l++;
+  }
+  for(int i = 0; i < l; i++) {
+    if(
+      (std::isalnum(raw[i]) && std::isalnum(raw[i+1])) ||
+      (raw[i] == ')' && std::isalnum(raw[i+1]))
+    ) {
+      raw = raw.substr(0, i+1) + "." + raw.substr(i+1, l);
+      l++; 
+    }
+  }
+}
+
 std::string Regex::get_raw() {
   return this->raw_value;
 }
 
 void Regex::set_raw(std::string raw) {
+  this->format(raw);
   this->raw_value = raw;
 }
 

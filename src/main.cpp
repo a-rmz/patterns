@@ -8,8 +8,9 @@ int main(int argc, char const *argv[]) {
 
   Dataset* d = new Dataset(path);
 
-  d->find_pattern("(b.o.m.b)");
-  d->find_pattern("(d.i.c.t.a.t.o.r)");
+  for(Tweet* t : d->find_pattern("(K|k)im")) {
+    std::cout << *t << std::endl;
+  };
 
   return 0;
 }
