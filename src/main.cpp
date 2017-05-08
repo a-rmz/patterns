@@ -1,45 +1,31 @@
 
-#include <iostream>
-#include "automaton/dfa.h"
-#include "dataset/Dataset.h"
+#include "./dataset/Dataset.h"
 
-void automaton();
+void regex_func();
 
-int main(int argc, char *argv[]) {
-  std::string path =  "/Users/a-rmz/Documents/LP/patterns/datasets/korea.json";
+int main(int argc, char const *argv[]) {
+  std::string path = "/Users/a-rmz/Documents/LP/patterns/datasets/korea.json";
 
-  Dataset::Dataset* d = new Dataset::Dataset(path);
-  d->print_tweets();
+  Dataset* d = new Dataset(path);
 
-  automaton();
+  d->find_pattern("(b.o.m.b)");
+  d->find_pattern("(d.i.c.t.a.t.o.r)");
 
   return 0;
 }
 
-void automaton() {
-  DFA::DFA *dfa = new DFA::DFA();
-
-  std::vector<std::string> states;
-  states  = {"q0", "q1", "q2"};
-
-  std::vector<std::string> final_states;
-  final_states  = {"q2"};
-
-  std::vector<std::string> alphabet;
-  alphabet = {"0", "1"};
-
-  dfa->set_states(states);
-  dfa->set_final_states(final_states);
-  dfa->set_alphabet(alphabet);
-
-  dfa->add_transition("q0", "0", "q0");
-  dfa->add_transition("q0", "1", "q1");
-
-  dfa->add_transition("q1", "0", "q2");
-  dfa->add_transition("q1", "1", "q1");
+void regex_func() {
+  std::string regex;
+  std::cout << "Enter the regex: ";
+  std::cin >> regex;
   
-  dfa->add_transition("q2", "0", "q2");
-  dfa->add_transition("q2", "1", "q1");
+  Regex* regex_or = new Regex(regex);
+  NFA* nfa_or = regex_or->compile_regex();
+  DFA* dfa = nfa_or->to_dfa();
 
-  std::cout << dfa->is_word_valid("0110") << std::endl;
+  while (true) {
+    std::cout << "\n\nEnter the word to test: ";
+    std::cin >> regex;
+    std::cout << regex << ": " << dfa->is_word_valid(regex);
+  }
 }

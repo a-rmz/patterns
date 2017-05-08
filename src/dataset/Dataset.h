@@ -5,16 +5,19 @@
 #include <string>
 #include <vector>
 #include "../tweet/Tweet.h"
-#include "automaton/dfa.h"
-#include "../regex/Regex.h"
+#include "../automaton/dfa/dfa.h"
+#include "../automaton/regex/regex.h"
 
 class Dataset {
   
   public:
     Dataset(std::string path);
+    Dataset(std::string path, std::string regex);
     virtual ~Dataset();
     void print_tweets();
     void set_regex(std::string regex);
+    void find_word(std::string word);
+    void find_pattern(std::string regex);
 
   private:
     std::string path;
@@ -24,8 +27,7 @@ class Dataset {
 
     // Methods
     tw_arr load(std::string path);
-    void find_word(std::string word);
-    void find_pattern(std::string regex);
+
 };
 
 #endif // DATASET_H
