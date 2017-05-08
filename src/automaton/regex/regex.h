@@ -21,6 +21,7 @@ public:
   NFA* or_operator(nfa_vec opts, int operator_count);
 
 private:
+  void format(std::string& raw);
   std::string raw_value;
 
 };
