@@ -12,11 +12,13 @@ include_directories(src)
 file(GLOB SOURCES 
   "src/main.cpp"
   "src/*/*.cpp"
+  "src/*/*/*.cpp"
 )
 
 # Use as header every .h under src/
 file(GLOB SRC_HEADERS 
   "src/*/*.h"
+  "src/*/*/*.h"
 )
 
 add_executable(patterns ${SOURCES} ${SRC_HEADERS})
