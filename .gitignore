@@ -11,3 +11,6 @@ CTestTestfile.cmake
 
 # Vim stuff
 *.swp
+
+#VS Code stuff
+.vscode
