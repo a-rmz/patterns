@@ -4,7 +4,7 @@
 void regex_func();
 
 int main(int argc, char const *argv[]) {
-  std::string path = "/Users/a-rmz/Documents/LP/patterns/datasets/korea.json";
+  std::string path = argv[1];
 
   Dataset* d = new Dataset(path);
 
