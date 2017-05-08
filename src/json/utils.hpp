@@ -23,5 +23,4 @@ namespace jsonutils {
 
     return tweets;
   }
-  
-
+}
